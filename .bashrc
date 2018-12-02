@@ -143,3 +143,13 @@ fi
 
 unset env
 
+# Git branch display between ()
+gb() {
+        echo -n '(' && git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n ') > '
+}
+git_branch() {
+        gb | sed 's/() > //'
+}
+
+export PS1+="\$(git_branch)"
+
